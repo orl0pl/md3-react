@@ -1,10 +1,7 @@
 import React, { CSSProperties, HTMLAttributes } from "react";
-import { ColorSurface, InteractiveStateLayer, Text, m3Scheme } from "..";
+import { ColorSurface, InteractiveStateLayer, Text, useTheme } from "..";
 import { Scheme, hexFromArgb } from "@material/material-color-utilities";
 import { css } from "@emotion/css";
-// import { InteractiveStateLayer } from "../surface/interactive";
-// import { ColorSurface } from "./surfaces";
-// import {Text} from '../components/Text'
 
 interface ButtonOptions {
 	color?: keyof Scheme;
@@ -12,46 +9,43 @@ interface ButtonOptions {
 }
 
 const Button = (props: HTMLAttributes<HTMLButtonElement> & ButtonOptions) => {
+    const {scheme} = useTheme()
+    const {color, type,...buttonProps} = props
+    const StateLayerStyle = css`
+    padding: 0px 24px;
+    transition: background-color 300ms;
+    display: flex;
+    align-items: center;
+    button:active & {
+        background-color: ${hexFromArgb(scheme["onPrimary"] as number) +
+        (12 * 256).toString(16).replace(".", "").padStart(2, "0").slice(0, 2)};
+    }
+    button:hover & {
+        background-color: ${hexFromArgb(scheme["onPrimary"] as number) +
+        (8 * 256).toString(16).replace(".", "").padStart(2, "0").slice(0, 2)};
+    }
+    button:focus-visible & {
+        background-color: ${hexFromArgb(scheme["onPrimary"] as number) +
+        (12 * 256).toString(16).replace(".", "").padStart(2, "0").slice(0, 2)};
+    }
+`
 	return (
 		<button
 			className={css`
-                all: unset; 
+				all: unset;
 				max-width: fit-content;
 				height: 40px;
 				display: flex;
 				border-radius: 999px;
-                background-color: ${hexFromArgb(m3Scheme["primary"] as number)};
+				background-color: ${hexFromArgb(scheme["primary"] as number)};
 			`}
+            {...buttonProps}
 		>
-			{/* <button
-				className={css`
-					all: unset;
-					
-				`}
-				
+			<div
+				className={StateLayerStyle}
 			>
 				<Text color="onPrimary">{props.children}</Text>
-			</button> */}
-			<div
-				className={css`
-					padding: 0px 24px;
-					transition: background-color 300ms;
-                    display: flex;
-                    align-items: center;
-					button:active & {
-						background-color: ${hexFromArgb(m3Scheme["onPrimary"] as number) + (12 * 256).toString(16).replace(".", "").padStart(2, "0").slice(0, 2)};
-					}
-					button:hover & {
-						background-color: ${hexFromArgb(m3Scheme["onPrimary"] as number) + (8 * 256).toString(16).replace(".", "").padStart(2, "0").slice(0, 2)};
-					}
-					button:focus-visible & {
-						background-color: ${hexFromArgb(m3Scheme["onPrimary"] as number) + (12 * 256).toString(16).replace(".", "").padStart(2, "0").slice(0, 2)};
-					}
-                    
-				`}
-			>
-               <Text color="onPrimary">{props.children}</Text> 
-            </div>
+			</div>
 		</button>
 	);
 };

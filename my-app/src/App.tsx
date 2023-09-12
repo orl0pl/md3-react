@@ -1,8 +1,10 @@
 import * as React from "react";
-import setupMD3, { Button, InteractiveStateLayer, m3Scheme } from "../../index";
-setupMD3(document);
+import { Button, InteractiveStateLayer, ThemeProvider, useTheme } from "../../index";
 export default () => (
 	<>
+		<ThemeProvider>
+     <Component/>
+		</ThemeProvider>
 		{/* <InteractiveStateLayer layerColorName="onPrimaryContainer" layerOpacity={0.16}>
 			A{" "}
 			<code>
@@ -13,8 +15,13 @@ export default () => (
             .slice(0, 2)}`}
 			</code>
 		</InteractiveStateLayer> */}
-    <Button>
-      Abecadło
-    </Button>
 	</>
 );
+function Component () {
+  const {updateSourceColor}=useTheme()
+  return <>
+   <Button onClick={()=>{updateSourceColor('#4400ee')}}>Set Blue</Button>
+   <Button onClick={()=>{updateSourceColor('#44ee00')}}>Set Green</Button>
+   <Button onClick={()=>{updateSourceColor('#ee4400')}}>Set Red</Button>
+  </>
+}
