@@ -9,6 +9,10 @@ interface InteractiveStateLayerOptions {
     layerOpacity: number
 }
 
+interface ColorSurfaceOptions {
+    colorName: keyof Scheme
+}
+
 
 const InteractiveStateLayer = ({...props}: HTMLAttributes<HTMLDivElement> & InteractiveStateLayerOptions)=>{
     const { layerColorName, layerOpacity, ...divProps} = props
@@ -24,5 +28,12 @@ const InteractiveStateLayer = ({...props}: HTMLAttributes<HTMLDivElement> & Inte
     return <div {...divProps} style={InteractiveStateLayerStyles} />
 }
 
+const ColorSurface = ({...props}: HTMLAttributes<HTMLDivElement> & ColorSurfaceOptions)=>{
+    const {colorName, ...divProps} = props;
+    const ColorSurfaceStyles: CSSProperties = {
+        backgroundColor: hexFromArgb(m3Scheme["primary"] as number)
+    }
+    return <div {...divProps} style={ColorSurfaceStyles}/>
+}
 
-export { InteractiveStateLayer}
+export { InteractiveStateLayer, ColorSurface}

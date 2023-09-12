@@ -6,7 +6,7 @@
   "module": "index.ts",
   "scripts": {
     "test": "cd tests && npm start && cd .. && exit 1",
-    "start": "npx esbuild app.tsx --bundle --servedir=www/ --outdir=www/js"
+    "start": "cd my-app && npm start"
   },
   "repository": {
     "type": "git",
@@ -23,11 +23,13 @@
   },
   "homepage": "https://github.com/orl0pl/md3-react#readme",
   "dependencies": {
+    "@emotion/css": "^11.11.2",
     "@material/material-color-utilities": "^0.2.7",
     "@types/react-dom": "^18.2.7",
     "esbuild": "^0.19.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.0.7"
   },
   "devDependencies": {
     "@types/node": "^20.5.9",
