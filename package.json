@@ -1,0 +1,36 @@
+{
+  "name": "md3-react",
+  "version": "1.0.0",
+  "description": "MD3 components for React",
+  "main": "index.ts",
+  "module": "index.ts",
+  "scripts": {
+    "test": "cd tests && npm start && cd .. && exit 1",
+    "start": "npx esbuild app.tsx --bundle --servedir=www/ --outdir=www/js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orl0pl/md3-react.git"
+  },
+  "keywords": [
+    "md3",
+    "react"
+  ],
+  "author": "orl0pl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orl0pl/md3-react/issues"
+  },
+  "homepage": "https://github.com/orl0pl/md3-react#readme",
+  "dependencies": {
+    "@material/material-color-utilities": "^0.2.7",
+    "@types/react-dom": "^18.2.7",
+    "esbuild": "^0.19.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.9",
+    "@types/react": "^18.2.21"
+  }
+}
