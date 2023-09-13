@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Button, InteractiveStateLayer, Text, ThemeProvider, useTheme } from "../../index";
 import { css } from "@emotion/css";
+import {Icon} from "@mdi/react";
+import { mdiHeart } from "@mdi/js";
 export default () => (
 	<>
 		<ThemeProvider>
@@ -24,8 +26,10 @@ function Component() {
 	return (
 		<div className={css`
 		display:flex;
+		gap: 16px;
 		`}>
 			<Button
+			type="tonal"
 				onClick={() => {
 					updateSourceColor("#4400ee");
 				}}
@@ -33,6 +37,7 @@ function Component() {
 				Set Blue
 			</Button>
 			<Button
+			type="outline"
 				onClick={() => {
 					updateSourceColor("#44ee00");
 				}}
@@ -43,12 +48,20 @@ function Component() {
 				onClick={() => {
 					updateSourceColor("#ee4400");
 				}}
+				icon={mdiHeart}
 			>
 				Set Red
+			</Button>
+			<Button
+				disabled
+				onClick={()=>{alert("Ok!")}}
+			>
+				Text
 			</Button>
 			<Text type="headlineMedium">
 				Abcadło
 			</Text>
+			<Icon size='24px' path={mdiHeart}/>
 		</div>
 	);
 }
