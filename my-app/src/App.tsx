@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Button, InteractiveStateLayer, ThemeProvider, useTheme } from "../../index";
+import { Button, InteractiveStateLayer, Text, ThemeProvider, useTheme } from "../../index";
+import { css } from "@emotion/css";
 export default () => (
 	<>
 		<ThemeProvider>
-     <Component/>
+			<Component />
 		</ThemeProvider>
 		{/* <InteractiveStateLayer layerColorName="onPrimaryContainer" layerOpacity={0.16}>
 			A{" "}
@@ -17,11 +18,37 @@ export default () => (
 		</InteractiveStateLayer> */}
 	</>
 );
-function Component () {
-  const {updateSourceColor}=useTheme()
-  return <>
-   <Button onClick={()=>{updateSourceColor('#4400ee')}}>Set Blue</Button>
-   <Button onClick={()=>{updateSourceColor('#44ee00')}}>Set Green</Button>
-   <Button onClick={()=>{updateSourceColor('#ee4400')}}>Set Red</Button>
-  </>
+
+function Component() {
+	const { updateSourceColor, scheme } = useTheme();
+	return (
+		<div className={css`
+		display:flex;
+		`}>
+			<Button
+				onClick={() => {
+					updateSourceColor("#4400ee");
+				}}
+			>
+				Set Blue
+			</Button>
+			<Button
+				onClick={() => {
+					updateSourceColor("#44ee00");
+				}}
+			>
+				Set Green
+			</Button>
+			<Button
+				onClick={() => {
+					updateSourceColor("#ee4400");
+				}}
+			>
+				Set Red
+			</Button>
+			<Text type="headlineMedium">
+				Abcadło
+			</Text>
+		</div>
+	);
 }

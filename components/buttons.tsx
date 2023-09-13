@@ -44,7 +44,7 @@ const Button = (props: HTMLAttributes<HTMLButtonElement> & ButtonOptions) => {
 			<div
 				className={StateLayerStyle}
 			>
-				<Text color="onPrimary">{props.children}</Text>
+				<Text type="labelLarge" color="onPrimary">{props.children}</Text>
 			</div>
 		</button>
 	);
