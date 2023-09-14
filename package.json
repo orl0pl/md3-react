@@ -5,7 +5,7 @@
   "main": "index.ts",
   "module": "index.ts",
   "scripts": {
-    "test": "cd tests && npm start && cd .. && exit 1",
+    "test": "npm start && cd .. && exit 1",
     "start": "cd my-app && npm start"
   },
   "repository": {
