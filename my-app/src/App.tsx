@@ -23,6 +23,8 @@ import {
 } from "@mdi/js";
 import { hexFromArgb } from "@material/material-color-utilities";
 import HomeScreen from "~homescreen";
+import ListScreen from "~listscreen";
+import CodeScreen from "~codescreen";
 export default () => (
 	<>
 		<ThemeProvider>
@@ -34,6 +36,8 @@ export default () => (
 				]}
 			>
 				<HomeScreen />
+				<ListScreen/>
+				<CodeScreen/>
 			</LayoutWithNavigationBar>
 		</ThemeProvider>
 	</>

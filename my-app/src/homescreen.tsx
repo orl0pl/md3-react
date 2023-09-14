@@ -8,7 +8,7 @@ export default function HomeScreen() {
 	const { updateSourceColor, scheme, toggleTheme } = useTheme();
 	return (
 		<div className={css`display: flex; flex-direction: row; gap: 12px; flex-wrap: wrap;`}>
-			<Text type="displayLarge">md3-react1</Text>
+			<Text type="displayLarge">md3-react</Text>
 			<Button
 				type="tonal"
 				onClick={() => {

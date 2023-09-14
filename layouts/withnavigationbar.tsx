@@ -52,10 +52,11 @@ function LayoutWithNavigationBar(props: LayoutWithNavigationOptions) {
 				flex-direction: ${isCompact ? "column-reverse" : "row"};
 				width: 100%;
 				height: 100%;
+				color: ${hexFromArgb(scheme.onBackground)};
 			`}
 		>
 			<NavigationBar handleSelected={(i)=>{setSelected(i)}} horizontal={isCompact ? false : true} segments={props.segments}/>
-			<main className={css`flex: 1; display: flex; background-color: ${hexFromArgb(scheme.background)}; overflow: scroll;`}>{children[selected]}</main>
+			<main className={css`flex: 1; display: flex; background-color: ${hexFromArgb(scheme.background)}; overflow: auto;`}>{children[selected]}</main>
 		</div>
 	);
 }
