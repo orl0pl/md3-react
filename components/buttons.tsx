@@ -7,7 +7,6 @@ import Icon from "@mdi/react";
 type ButtonType = "filled" | "tonal" | "outline" | "text";
 
 interface ButtonOptions {
-	color?: keyof Scheme;
 	type?: ButtonType;
 	icon?: string;
 	disabled?: boolean;
@@ -15,7 +14,7 @@ interface ButtonOptions {
 
 const Button = (props: HTMLAttributes<HTMLButtonElement> & ButtonOptions) => {
 	const { scheme } = useTheme();
-	const { color, type = "filled", icon, ...buttonProps } = props;
+	const { type = "filled", icon, ...buttonProps } = props;
 	const background =
 		type === "filled"
 			? hexFromArgb(scheme["primary"])

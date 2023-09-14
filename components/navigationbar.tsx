@@ -3,16 +3,6 @@ import { ColorSurface, InteractiveStateLayer, Text, textStylesForType, useTheme 
 import { Scheme, hexFromArgb } from "@material/material-color-utilities";
 import { css } from "@emotion/css";
 import Icon from "@mdi/react";
-import {
-	mdiCompass,
-	mdiCompassOutline,
-	mdiHome,
-	mdiHomeOutline,
-	mdiNavigation,
-	mdiNavigationVariant,
-	mdiSquare,
-	mdiThumbUp,
-} from "@mdi/js";
 
 interface NavigationBarSegmentOptions {
 	activated?: boolean;
@@ -31,7 +21,7 @@ interface Segment {
 interface NavigationBarOptions {
 	horizontal?: boolean;
 	segments: Segment[];
-	onSelected?: (index: number) => void;
+	handleSelected?: (index: number) => void;
 }
 
 const NavigationBarSegment = (props: HTMLAttributes<HTMLElement> & NavigationBarSegmentOptions) => {
@@ -49,7 +39,7 @@ const NavigationBarSegment = (props: HTMLAttributes<HTMLElement> & NavigationBar
 				align-items: center;
 				& div,
 				span {
-					transition: background-color 300ms ease, color 300ms ease-in;
+					transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 				}
                 &:focus-visible {
                     outline: unset;
@@ -115,7 +105,7 @@ const NavigationBarSegment = (props: HTMLAttributes<HTMLElement> & NavigationBar
 const NavigationBar = (props: HTMLAttributes<HTMLElement> & NavigationBarOptions) => {
 	const { scheme } = useTheme();
 	const [activeIndex, setActiveIndex] = useState(0);
-	const {horizontal, segments,  ...navigationbarProps } = props;
+	const {horizontal, segments, handleSelected,  ...navigationbarProps } = props;
 
 	return (
 		<nav
@@ -123,7 +113,7 @@ const NavigationBar = (props: HTMLAttributes<HTMLElement> & NavigationBarOptions
 				display: flex;
 				flex-direction: ${props.horizontal ? "column" : "row"};
 				gap: 16px;
-				background-color: ${hexFromArgb(scheme.surface)};
+				background-color: ${hexFromArgb(scheme.surfaceContainer)};
 				width: max-content;
                 ${!horizontal && "justify-content: space-evenly;"};
 				padding-top: 12px;
@@ -148,8 +138,8 @@ const NavigationBar = (props: HTMLAttributes<HTMLElement> & NavigationBarOptions
 						horizontal={props.horizontal}
 						onClick={() => {
 							setActiveIndex(i);
-							if (props.onSelected) {
-								props.onSelected(i);
+							if (props.handleSelected) {
+								props.handleSelected(i);
 							}
 						}}
 					/>
