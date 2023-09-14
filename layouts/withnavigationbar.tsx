@@ -27,7 +27,7 @@ interface Segment {
 
 interface LayoutWithNavigationOptions {
 	segments: Segment[],
-	children: React.ReactElement[]//React.ReactNode
+	children: React.ReactElement[] | React.ReactElement//React.ReactNode
 }
 
 function LayoutWithNavigationBar(props: LayoutWithNavigationOptions) {
@@ -36,6 +36,13 @@ function LayoutWithNavigationBar(props: LayoutWithNavigationOptions) {
 	const [isCompact, setIsCompact] = useState(window.matchMedia("(max-width: 600px)").matches);
 	const handler = (e: MediaQueryListEvent) => setIsCompact(e.matches);
 	window.matchMedia("(max-width: 600px)").addEventListener("change", handler);
+	let children: React.ReactElement[] = [];
+	if(Array.isArray(props.children)){
+		children = props.children;
+	}
+	else {
+		children = [props.children];
+	}
 	return (
 		<div
 			className={css`
@@ -43,11 +50,12 @@ function LayoutWithNavigationBar(props: LayoutWithNavigationOptions) {
 				flex: 1;
 				display: flex;
 				flex-direction: ${isCompact ? "column-reverse" : "row"};
-				gap: 12px;
+				width: 100%;
+				height: 100%;
 			`}
 		>
 			<NavigationBar handleSelected={(i)=>{setSelected(i)}} horizontal={isCompact ? false : true} segments={props.segments}/>
-			<main className={css`flex: 1; display: flex; flex-wrap:wrap; background-color: ${hexFromArgb(scheme.background)};`}>{props.children === undefined ? null : props.children[selected]}</main>
+			<main className={css`flex: 1; display: flex; background-color: ${hexFromArgb(scheme.background)}; overflow: scroll;`}>{children[selected]}</main>
 		</div>
 	);
 }
