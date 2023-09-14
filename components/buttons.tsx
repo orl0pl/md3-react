@@ -40,7 +40,7 @@ const Button = (props: HTMLAttributes<HTMLButtonElement> & ButtonOptions) => {
 		Math.round(0.38 * 256 * 1)
 			.toString(16)
 			.padStart(2, "0")};
-		${textStylesForType("labelLarge")}
+		
 		button:not(:disabled):hover & {
 			background-color: ${onbackground +
 			Math.round(0.08 * 256)
@@ -59,6 +59,7 @@ const Button = (props: HTMLAttributes<HTMLButtonElement> & ButtonOptions) => {
 				.toString(16)
 				.padStart(2, "0")};
 		}
+		${textStylesForType("labelLarge")}
 	`;
 	return (
 		<button

@@ -5,7 +5,7 @@ import React, { createContext, useContext, useState } from "react";
 interface IThemeContext {
 	theme: "light" | "dark";
 	sourceColor: string;
-	toggleTheme: () => void;
+	toggleTheme: (theme?: 'light' | 'dark') => void;
 	updateSourceColor: (newColor: string) => void;
 	scheme: Scheme;
 }
@@ -26,13 +26,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 		themeFromSourceColor(argbFromHex("#4400ee"), []).schemes["light"]
 	); // Store the generated theme colors here
 
-	const toggleTheme = () => {
-		setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-		setscheme(themeFromSourceColor(argbFromHex(sourceColor), []).schemes[theme]);
+	const toggleTheme = (utheme?: 'light' | 'dark') => {
+		setTheme(utheme ? utheme : (prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+		setscheme(themeFromSourceColor(argbFromHex(sourceColor), []).schemes[utheme ? utheme : theme === "light" ? "dark" : "light"]);
 	};
 
 	const updateSourceColor = (newColor: string) => {
-        console.log(newColor)
 		setSourceColor(newColor);
 		setscheme(themeFromSourceColor(argbFromHex(newColor), []).schemes[theme]);
 	};

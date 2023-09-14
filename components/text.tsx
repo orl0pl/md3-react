@@ -140,7 +140,6 @@ const Text = ({ ...props }: HTMLAttributes<HTMLSpanElement> & TextOptions) => {
 	const { color, type, children, ...spanProps } = props;
 	const { scheme } = useTheme();
 	const thisTextTypography = typographySet[type || "bodyMedium"];
-	console.log(hexFromArgb(scheme["primary"] as number));
 	return (
 		<>
 			<span
