@@ -23,7 +23,9 @@
     "react": "*"
   },
   "dependencies": {
+    "@material/material-color-utilities": "^0.2.7",
     "declaration-bundler-webpack-plugin": "^1.0.3",
+    "mcu-extra": "^0.0.5",
     "types-webpack-bundler": "^1.0.2"
   }
 }
