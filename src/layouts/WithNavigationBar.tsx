@@ -1,7 +1,7 @@
 import { css } from "@emotion/css";
 import { hexFromArgb } from "@material/material-color-utilities";
 import { NavigationBar, useTheme } from "../index";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 interface Segment {
 	icon: string;
 	inActiveIcon?: string;
@@ -9,21 +9,22 @@ interface Segment {
 }
 
 interface LayoutWithNavigationOptions {
-	segments: Segment[],
-	children: React.ReactElement[] | React.ReactElement//React.ReactNode
+	segments: Segment[];
+	children: React.ReactElement[] | React.ReactElement; //React.ReactNode
 }
 
 function LayoutWithNavigationBar(props: LayoutWithNavigationOptions) {
 	const { updateSourceColor, scheme, toggleTheme } = useTheme();
-	const [selected, setSelected] = useState(0)
-	const [isCompact, setIsCompact] = useState(window.matchMedia("(max-width: 600px)").matches);
-	const handler = (e: MediaQueryListEvent) => setIsCompact(e.matches);
-	window.matchMedia("(max-width: 600px)").addEventListener("change", handler);
+	const [selected, setSelected] = useState(0);
+	const [isCompact, setIsCompact] = useState(true);
+	useEffect(() => {
+		const handler = (e: MediaQueryListEvent) => setIsCompact(e.matches);
+		window.matchMedia("(max-width: 600px)").addEventListener("change", handler);
+	}, [window]);
 	let children: React.ReactElement[] = [];
-	if(Array.isArray(props.children)){
+	if (Array.isArray(props.children)) {
 		children = props.children;
-	}
-	else {
+	} else {
 		children = [props.children];
 	}
 	return (
@@ -38,8 +39,23 @@ function LayoutWithNavigationBar(props: LayoutWithNavigationOptions) {
 				color: ${hexFromArgb(scheme.onBackground)};
 			`}
 		>
-			<NavigationBar handleSelected={(i)=>{setSelected(i)}} horizontal={isCompact ? false : true} segments={props.segments}/>
-			<main className={css`flex: 1; display: flex; background-color: ${hexFromArgb(scheme.background)}; overflow: auto;`}>{children[selected]}</main>
+			<NavigationBar
+				handleSelected={(i) => {
+					setSelected(i);
+				}}
+				horizontal={isCompact ? false : true}
+				segments={props.segments}
+			/>
+			<main
+				className={css`
+					flex: 1;
+					display: flex;
+					background-color: ${hexFromArgb(scheme.background)};
+					overflow: auto;
+				`}
+			>
+				{children[selected]}
+			</main>
 		</div>
 	);
 }
