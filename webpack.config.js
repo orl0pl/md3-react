@@ -1,5 +1,5 @@
 const path = require('path')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+var DeclarationBundlerPlugin = require('types-webpack-bundler');
 
 module.exports = {
     entry: './src/index.ts',
@@ -26,5 +26,8 @@ module.exports = {
     resolve: {
         extensions: [".tsx", ".ts"]
     },
-    plugins: [new ForkTsCheckerWebpackPlugin()],
+    plugins: [new DeclarationBundlerPlugin({
+            moduleName:'\'md3-react\'',
+            out:'./index.d.ts',
+        })],
 }
