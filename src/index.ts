@@ -1,5 +1,2 @@
 export * from './components'
-
-// export {
-//     Button
-// }
+export * from './utils/ThemeProvider'

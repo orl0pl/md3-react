@@ -2,6 +2,7 @@ const path = require('path')
 var DeclarationBundlerPlugin = require('types-webpack-bundler');
 
 module.exports = {
+    target: 'node',
     entry: './src/index.ts',
     mode: 'production',
     devtool: 'inline-source-map',
@@ -16,12 +17,14 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?/,
-                use: ["ts-loader"]
+                use: ["ts-loader"],
+                exclude: /node_modules/
             }
         ]
     },
     externals: {
-        react: 'react'
+        react: 'react',
+        'prop-types': 'prop-types'
     },
     resolve: {
         extensions: [".tsx", ".ts"]

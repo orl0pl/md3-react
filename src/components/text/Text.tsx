@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, ReactElement } from "react";
 import { Scheme, hexFromArgb } from "@material/material-color-utilities";
 import { css } from "@emotion/css";
-import { useTheme } from "./themeProvider";
+import { useTheme } from "../../index";
 import { TextType, textStylesForType } from "../../index";
 
 interface TextOptions {

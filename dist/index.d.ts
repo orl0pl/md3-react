@@ -1,17 +1,48 @@
 declare module 'md3-react'
 {
-	export * from './componets';
+	export * from './components';
+	export * from './utils/ThemeProvider';
 
 	export * from './buttons';
+	export * from './text';
 
-	import React from 'react';
-	interface ButtonProps {
-	    title: string;
+	import { HTMLAttributes } from "react";
+	import React from "react";
+	type ButtonType = "filled" | "tonal" | "outline" | "text";
+	interface ButtonOptions {
+	    type?: ButtonType;
+	    icon?: string;
+	    disabled?: boolean;
 	}
-	export default function Button({ title }: ButtonProps): React.JSX.Element;
-	export {};
+	const Button: (props: HTMLAttributes<HTMLButtonElement> & ButtonOptions) => React.JSX.Element;
+	export { Button };
 
 	export * from './Button';
+
+	import React, { HTMLAttributes } from "react";
+	import { Scheme } from "@material/material-color-utilities";
+	import { TextType } from "../../index";
+	interface TextOptions {
+	    color?: keyof Scheme;
+	    type?: TextType;
+	}
+	const Text: ({ ...props }: HTMLAttributes<HTMLSpanElement> & TextOptions) => React.JSX.Element;
+	export { Text };
+
+	export * from './Text';
+	export * from './typography';
+
+	export const typographySet: ITypographySet;
+	export function textStylesForType(type: TextType): string;
+	export type TextType = "displayLarge" | "displayMedium" | "displaySmall" | "headlineLarge" | "headlineMedium" | "headlineSmall" | "titleLarge" | "titleMedium" | "titleSmall" | "labelLarge" | "labelMedium" | "labelSmall" | "bodyLarge" | "bodyMedium" | "bodySmall";
+	export type ITypographySet = {
+	    [key in TextType]: {
+	        lineHeight: number;
+	        fontSize: number;
+	        letterSpacing: number;
+	        fontWeight: number;
+	    };
+	};
 
 	import React from "react";
 	import { Scheme } from "mcu-extra";

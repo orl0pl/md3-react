@@ -1,13 +1,97 @@
-import React from 'react'
+import { HTMLAttributes } from "react";
+import { textStylesForType, useTheme } from "../../index";
+import { hexFromArgb } from "@material/material-color-utilities";
+import { css } from "@emotion/css";
+import Icon from "@mdi/react";
+import React from "react";
 
-interface ButtonProps {
-     title: string;
+type ButtonType = "filled" | "tonal" | "outline" | "text";
+
+interface ButtonOptions {
+	type?: ButtonType;
+	icon?: string;
+	disabled?: boolean;
 }
 
-export default function Button ({title}: ButtonProps) {
-    return (
-        <button style={{border: '1px solid blue', padding: 16}}>
-            {title}
-        </button>
-    )
-}
+const Button = (props: HTMLAttributes<HTMLButtonElement> & ButtonOptions) => {
+	const { scheme } = useTheme();
+	const { type = "filled", icon, ...buttonProps } = props;
+	const background =
+		type === "filled"
+			? hexFromArgb(scheme["primary"])
+			: type === "tonal"
+			? hexFromArgb(scheme["secondaryContainer"])
+			: "transparent";
+	const onbackground =
+		type === "filled"
+			? hexFromArgb(scheme["onPrimary"])
+			: type === "tonal"
+			? hexFromArgb(scheme["onSecondaryContainer"])
+			: hexFromArgb(scheme["primary"]);
+	const StateLayerStyle = css`
+		padding: 0px 24px;
+		transition: background-color 300ms;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		${icon && "padding-left: 16px;"}
+		color: ${onbackground}${props.disabled &&
+		Math.round(0.38 * 256 * 1)
+			.toString(16)
+			.padStart(2, "0")};
+		
+		button:not(:disabled):hover & {
+			background-color: ${onbackground +
+			Math.round(0.08 * 256)
+				.toString(16)
+				.padStart(2, "0")};
+		}
+		button:not(:disabled):active & {
+			background-color: ${onbackground +
+			Math.round(0.12 * 256)
+				.toString(16)
+				.padStart(2, "0")};
+		}
+		button:not(:disabled):focus-visible & {
+			background-color: ${onbackground +
+			Math.round(0.12 * 256)
+				.toString(16)
+				.padStart(2, "0")};
+		}
+		${textStylesForType("labelLarge")}
+	`;
+	return (
+		<button
+			className={css`
+				all: unset;
+				cursor: ${!props.disabled && 'pointer'};
+				overflow: hidden;
+				width: fit-content;
+				height: 36px;
+				display: flex;
+				border-radius: 999px;
+				background-color: ${background}${props.disabled &&
+					Math.round(0.38 * 256)
+						.toString(16)
+						.padStart(2, "0")};
+				${type === "outline" &&
+				`border: ${hexFromArgb(scheme.outline)}${
+					props.disabled ?
+					Math.round(0.38 * 256)
+						.toString(16)
+						.padStart(2, "0")
+						: ''
+				} 1px solid `}
+			`}
+			{...buttonProps}
+		>
+			<div className={StateLayerStyle}>
+				{icon && <Icon path={icon} size="18px" />}
+				{props.children}
+			</div>
+		</button>
+	);
+};
+
+export { Button };
