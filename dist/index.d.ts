@@ -1,5 +1,9 @@
 declare module 'md3-react'
 {
+	export * from './componets';
+
+	export * from './buttons';
+
 	import React from 'react';
 	interface ButtonProps {
 	    title: string;
@@ -7,7 +11,6 @@ declare module 'md3-react'
 	export default function Button({ title }: ButtonProps): React.JSX.Element;
 	export {};
 
-	import Button from './Button';
-	export { Button };
+	export * from './Button';
 
 }
