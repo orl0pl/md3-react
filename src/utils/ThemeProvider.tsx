@@ -1,5 +1,5 @@
 import { argbFromHex } from "@material/material-color-utilities";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { themeFromSourceColor, Scheme } from "mcu-extra";
 
 interface IThemeContext {
@@ -22,28 +22,23 @@ const ThemeContext = createContext(defaultValues);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
 	const [theme, setTheme] = useState<"light" | "dark">("light");
 	const [sourceColor, setSourceColor] = useState("#4400ee");
-	const [toggleTheme, setToggleFun] = useState<(theme?: "light" | "dark") => void>(()=>{})
-	const [updateSourceColor, setColorFun] = useState<(newColor: string) => void>(()=>{})
 	const [scheme, setscheme] = useState(
 		themeFromSourceColor(argbFromHex("#4400ee"), []).schemes["light"]
 	); // Store the generated theme colors here
 
-	
+	const toggleTheme = (utheme?: "light" | "dark") => {
+		const newTheme = utheme !== undefined ? utheme : theme === "light" ? "dark" : "light";
+		setTheme(newTheme);
+		setscheme(
+			themeFromSourceColor(argbFromHex(sourceColor), []).schemes[newTheme]
+		);
+	};
 
-	useEffect(()=>{
-		setToggleFun((utheme?: "light" | "dark") => {
-			const newTheme = utheme !== undefined ? utheme : theme === "light" ? "dark" : "light";
-			setTheme(newTheme);
-			setscheme(
-				themeFromSourceColor(argbFromHex(sourceColor), []).schemes[newTheme]
-			)
-		})
+	const updateSourceColor = (newColor: string) => {
+		setSourceColor(newColor);
+		setscheme(themeFromSourceColor(argbFromHex(newColor), []).schemes[theme]);
+	};
 	
-		setColorFun((newColor: string) => {
-			setSourceColor(newColor);
-			setscheme(themeFromSourceColor(argbFromHex(newColor), []).schemes[theme]);
-		})
-	})
 
 	return (
 		<ThemeContext.Provider value={{ theme, toggleTheme, sourceColor, updateSourceColor, scheme }}>
