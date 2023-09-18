@@ -27,11 +27,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 	); // Store the generated theme colors here
 
 	const toggleTheme = (utheme?: "light" | "dark") => {
-		setTheme(utheme ? utheme : (prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+		const newTheme = utheme !== undefined ? utheme : theme === "light" ? "dark" : "light";
+		setTheme(newTheme);
 		setscheme(
-			themeFromSourceColor(argbFromHex(sourceColor), []).schemes[
-				utheme ? utheme : theme === "light" ? "dark" : "light"
-			]
+			themeFromSourceColor(argbFromHex(sourceColor), []).schemes[newTheme]
 		);
 	};
 

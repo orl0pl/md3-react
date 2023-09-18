@@ -20,7 +20,7 @@ function LayoutWithNavigationBar(props: LayoutWithNavigationOptions) {
 	useEffect(() => {
 		const handler = (e: MediaQueryListEvent) => setIsCompact(e.matches);
 		window.matchMedia("(max-width: 600px)").addEventListener("change", handler);
-	}, [window]);
+	});
 	let children: React.ReactElement[] = [];
 	if (Array.isArray(props.children)) {
 		children = props.children;
