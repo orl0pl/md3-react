@@ -8,6 +8,10 @@
     "test": "npm start && cd .. && exit 1",
     "start": "cd my-app && npm start"
   },
+  "files": [
+    "components",
+    "layouts"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/orl0pl/md3-react.git"

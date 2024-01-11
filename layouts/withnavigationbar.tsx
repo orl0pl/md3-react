@@ -1,24 +1,7 @@
 import { css } from "@emotion/css";
 import { hexFromArgb } from "@material/material-color-utilities";
-import {
-	Button,
-	InteractiveStateLayer,
-	NavigationBar,
-	Text,
-	ThemeProvider,
-	useTheme,
-} from "../index";
+import { NavigationBar, useTheme } from "../index";
 import React, { useState } from "react";
-import {
-	mdiCompass,
-	mdiCompassOutline,
-	mdiHeart,
-	mdiHome,
-	mdiHomeOutline,
-	mdiListBox,
-	mdiListBoxOutline,
-} from "@mdi/js";
-import Icon from "@mdi/react";
 interface Segment {
 	icon: string;
 	inActiveIcon?: string;

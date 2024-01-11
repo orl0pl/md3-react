@@ -1,6 +1,6 @@
-import React, { CSSProperties, HTMLAttributes, useState } from "react";
-import { ColorSurface, InteractiveStateLayer, Text, textStylesForType, useTheme } from "..";
-import { Scheme, hexFromArgb } from "@material/material-color-utilities";
+import React, { HTMLAttributes, useState } from "react";
+import { Text, useTheme } from "..";
+import { hexFromArgb } from "@material/material-color-utilities";
 import { css } from "@emotion/css";
 import Icon from "@mdi/react";
 

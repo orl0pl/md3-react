@@ -1,8 +1,9 @@
-import React, { CSSProperties, HTMLAttributes } from "react";
-import { ColorSurface, InteractiveStateLayer, Text, textStylesForType, useTheme } from "..";
-import { Scheme, hexFromArgb } from "@material/material-color-utilities";
+import { HTMLAttributes } from "react";
+import { textStylesForType, useTheme } from "..";
+import { hexFromArgb } from "@material/material-color-utilities";
 import { css } from "@emotion/css";
 import Icon from "@mdi/react";
+import React from "react";
 
 type ButtonType = "filled" | "tonal" | "outline" | "text";
 
