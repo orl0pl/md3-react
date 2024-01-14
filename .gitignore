@@ -1,4 +1,5 @@
 node_modules
+src/my-app
 package-lock.json
 dist
 types

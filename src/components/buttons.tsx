@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { textStylesForType, useTheme } from "..";
+import { textStylesForType, useTheme } from "../index";
 import { hexFromArgb } from "@material/material-color-utilities";
 import { css } from "@emotion/css";
 import Icon from "@mdi/react";

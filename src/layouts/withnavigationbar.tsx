@@ -14,7 +14,7 @@ interface LayoutWithNavigationOptions {
 }
 
 function LayoutWithNavigationBar(props: LayoutWithNavigationOptions) {
-	const { updateSourceColor, scheme, toggleTheme } = useTheme();
+	const { updateSourceColor, scheme, toggleMode } = useTheme();
 	const [selected, setSelected] = useState(0)
 	const [isCompact, setIsCompact] = useState(window.matchMedia("(max-width: 600px)").matches);
 	const handler = (e: MediaQueryListEvent) => setIsCompact(e.matches);
