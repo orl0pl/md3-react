@@ -8,7 +8,7 @@
   "scripts": {
     "test": "npm start && cd .. && exit 1",
     "start": "cd my-app && npm start",
-    "build": "npx tsc"
+    "build": "npx webpack"
   },
   "files": [
     "components",
