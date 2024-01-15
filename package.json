@@ -1,9 +1,10 @@
 {
   "name": "md3-react",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "MD3 components for React",
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "npm start && cd .. && exit 1",
     "start": "cd my-app && npm start",
