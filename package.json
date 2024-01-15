@@ -1,6 +1,6 @@
 {
   "name": "md3-react",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "MD3 components for React",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -12,8 +12,7 @@
     "prepublishOnly": "npm run build"
   },
   "files": [
-    "components",
-    "layouts"
+    "dist"
   ],
   "repository": {
     "type": "git",
