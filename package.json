@@ -9,7 +9,8 @@
     "test": "npm start && cd .. && exit 1",
     "start": "cd my-app && npm start",
     "build": "npx webpack",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "dev": "cd test-react && npm start"
   },
   "files": [
     "dist"
