@@ -131,7 +131,7 @@ export function textStylesForType(type: TextType) {
 	const thisTextTypography = typographySet[type];
 	return `
   line-height: ${thisTextTypography.lineHeight}px;
-  font-size: ${thisTextTypography.fontSize}px;
+  font-size: ${thisTextTypography.fontSize+2}px;
   letter-spacing: ${thisTextTypography.letterSpacing}px;
   font-weight: ${thisTextTypography.fontWeight};`;
 }
