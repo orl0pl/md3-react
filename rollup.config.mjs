@@ -8,6 +8,7 @@ export default [{
   input: './src/index.ts',
   type: "module",
   budleConfigAsCjs: true,
+  external: "react",
   output: {
     file: 'dist/index.js',
     name: 'md3-react',
